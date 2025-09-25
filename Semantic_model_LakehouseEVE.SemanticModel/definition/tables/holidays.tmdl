@@ -1,0 +1,95 @@
+table holidays
+	lineageTag: e19ba3aa-301a-4c1d-b631-a31fef74f887
+	sourceLineageTag: [dbo].[holidays]
+
+	measure Count = COUNT(holidays[countryOrRegion])
+		formatString: 0
+		lineageTag: 451971a0-effe-4e2e-a362-67fa6e278d69
+
+		changedProperty = Name
+
+	column countryOrRegion
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 2bddf414-79fa-4bb7-9734-79147c3563bb
+		sourceLineageTag: countryOrRegion
+		summarizeBy: none
+		sourceColumn: countryOrRegion
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column holidayName
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9834689d-e4f7-44fa-8898-2aa1180b36e7
+		sourceLineageTag: holidayName
+		summarizeBy: none
+		sourceColumn: holidayName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column normalizeHolidayName
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: d4a07a53-6f49-4d44-9af7-c6bacfdb67b7
+		sourceLineageTag: normalizeHolidayName
+		summarizeBy: none
+		sourceColumn: normalizeHolidayName
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column isPaidTimeOff
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		sourceProviderType: bit
+		lineageTag: d083789b-7f5f-496f-85d7-dfea8ca8b033
+		sourceLineageTag: isPaidTimeOff
+		summarizeBy: none
+		sourceColumn: isPaidTimeOff
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column countryRegionCode
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 667bab52-120d-4cf8-96ee-cac44df8dcbc
+		sourceLineageTag: countryRegionCode
+		summarizeBy: none
+		sourceColumn: countryRegionCode
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: e15acec4-5c33-48cd-9bd9-c2db92fee3cb
+		sourceLineageTag: date
+		summarizeBy: none
+		sourceColumn: date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition holidays = entity
+		mode: directLake
+		source
+			entityName: holidays
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+
